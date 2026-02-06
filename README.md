@@ -66,7 +66,7 @@ The system follows a modular multimodal RAG pipeline:
 | Data Item | Source (Website) | PDF / Image | Modality | Role in Product |
 |----------|------------------|-------------|----------|-----------------|
 | Student Handbook | [UMKC Student Handbook](https://www.umkc.edu/student-affairs/student-handbook/) | umkc-student-handbook.pdf | PDF / text | Policies, student services, conduct → text evidence |
-| Parking Permits | [UMKC Parking Operations](https://parking.umkc.edu/) | Student Permits - Parking Options - Parking _ University of Missouri-Kansas City.pdf | PDF / table | Parking rules, permits, zones → text + table evidence |
+| Parking Permits | [UMKC Parking Operations](https://parking.umkc.edu/) | Student Permits - Parking Options - Parking _ University of Missouri-Kansas City.pdf | PDF / text | Parking rules, permits, zones → text + table evidence |
 | Campus Crime Report (Clery) | [UMKC Police – Campus Crime Information](https://www.umkc.edu/police/campus-crime-information/) | 2025ccfsrumkcpolice.pdf | PDF / table / chart | Crime statistics, trends → numeric + figure evidence |
 | Visual Identity Guidelines | [UMKC Brand Guidelines](https://www.umkc.edu/marketing/brand-guidelines/) | visual-identity-guidelines.pdf | PDF / image | Logo, color, design → optional for UI/branding |
 | Health Sciences Campus Map | [UMKC Maps](https://www.umkc.edu/maps/) | umkc-health-sciences-campus-map.pdf | PDF / image | Campus map → location-based tasks |
