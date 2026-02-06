@@ -1,11 +1,170 @@
 # CS5588-group2
-## Team Roles (Required)
+
+# CS 5588 Week 3 — Multimodal RAG Module (UMKC Campus Information)
+
+## Project Overview
+
+This project implements a **stakeholder-facing multimodal Retrieval-Augmented Generation (RAG) module** for answering campus-related questions at the University of Missouri–Kansas City (UMKC). The system integrates **PDF documents, tables, and images**, applies OCR to visual content, and generates **grounded answers with citations**, while explicitly refusing to answer when evidence is insufficient.
+
+The goal of this sprint is not only to improve answer accuracy, but also to demonstrate **trust-aware behavior**, **multimodal grounding**, and **deployment readiness**.
+
+---
+
+## Product Brief
+
+### Target Users
+- UMKC students seeking information about **parking**, **shuttle transportation**, and **campus navigation**
+- Visitors and staff who need quick, evidence-backed answers from official campus documents
+
+### User Value
+- Faster access to official information without manually searching long PDFs
+- Increased trust through transparent citations
+- Reduced risk of misinformation via explicit refusal behavior
+
+---
+
+## System Architecture
+
+The system follows a modular multimodal RAG pipeline:
+
+1. **Ingestion**
+   - PDF text extraction using PyMuPDF
+   - Image ingestion (maps, tables, figures)
+   - OCR applied to images to convert visual content into searchable text
+
+2. **Indexing**
+   - Page-level chunking
+   - Metadata tracking (document name, page number, modality)
+
+3. **Retrieval**
+   - Sparse retrieval (BM25)
+   - Dense retrieval (embeddings)
+   - Hybrid retrieval (dense + sparse fusion)
+   - Optional reranking
+
+4. **Grounded Generation**
+   - Evidence-pack construction
+   - LLM-based answer generation with enforced citations
+   - Explicit refusal when evidence is insufficient
+
+---
+
+
+## Team Roles
 
 | Team Member | Role | Responsibilities |
 |------------|------|------------------|
 | **Lyza Iamrache** | **Product Lead** | Defines the stakeholder persona(s), product value, success metrics (trust, usability, time-to-answer), and writes the “If we shipped this” deployment plan. |
 | **Ailing Nan** | **Systems Lead** | Builds the multimodal pipeline (PDF ingestion + OCR), implements retrieval (BM25 + FAISS + hybrid fusion + reranking), grounding with citations, and runs ablation studies. |
 | **Gia Huynh** | **Evaluation & Risk Lead** | Designs evaluation metrics (P@5, R@10, faithfulness), compares retrieval methods, documents failure cases, and writes governance + mitigation strategies. |
+
+---
+
+## Data Inventory
+
+| Source | Modality | Role |
+|------|--------|------|
+| UMKC campus maps | PDF / Images | Spatial grounding for proximity questions |
+| Shuttle bus schedule (Spring 2026) | PDF | Validation of active shuttle stops |
+| Parking permits & pricing | PDF / Tables | Numeric grounding for permit cost questions |
+| Student handbook | PDF | Supplementary policy context |
+
+---
+
+## User Tasks & Demo Flow
+
+This section demonstrates how the system behaves end-to-end for each stakeholder task, including retrieved evidence and final responses.
+
+---
+
+### Task 1 — Shuttle Transportation
+
+**Question:**  
+Which shuttle bus station is closest to Plaster Hall according to the campus map and shuttle route information?
+
+**Top Evidence Citations:**  
+- [umkc-volker-campus-map.pdf p1]  
+- [umkc-volker-campus-map.pdf p2]  
+- [umkc-health-sciences-campus-map.pdf p2]  
+- [umkc-health-sciences-campus-map.pdf p1]
+
+**System Answer:**  
+According to the provided campus maps and shuttle route information, the closest shuttle bus station to Plaster Hall is the one located at 5115 Oak St., which serves the Administrative Center building. This location is approximately 1 mile away from Plaster Hall based on the distance between these two points on the campus map.  
+*[umkc-volker-campus-map.pdf p2]*
+
+**Observation:**  
+While the system retrieves relevant campus map pages and provides a plausible spatial inference, shuttle route or schedule documentation is not retrieved. As a result, the answer is only **partially grounded**.
+
+---
+
+### Task 2 — Parking & Pricing
+
+**Question:**  
+Which parking lot is closest to Haag Hall, and how much does a student pay for a semester parking permit for that lot?
+
+**Top Evidence Citations:**  
+- [Student Permits - Parking Options - Parking _ University of Missouri-Kansas City.pdf p2]  
+- [Student Permits - Parking Options - Parking _ University of Missouri-Kansas City.pdf p3]  
+- [Student Permits - Parking Options - Parking _ University of Missouri-Kansas City.pdf p1]  
+- [Student Permits - Parking Options - Parking _ University of Missouri-Kansas City.pdf p4]
+
+**System Answer:**  
+The closest parking lot to Haag Hall is Area 32S, located at 52nd and Rockhill Road. A single-semester all-day accessible permit for this lot costs $135. Multi-semester permits vary by duration; for example, a Fall & Spring permit costs $270, while a Fall, Spring, & Summer permit costs $338. These prices are valid until May 31, 2026.
+
+**Observation:**  
+The system correctly retrieves parking permit pricing tables and reports accurate numeric values. However, campus map evidence is not retrieved to explicitly justify the “closest” parking lot determination. The answer is therefore **correct but incompletely grounded**.
+
+---
+
+### Task 3 — Incomplete Evidence (Refusal)
+
+**Question:**  
+Will UMKC’s student enrollment decrease in 2026 compared to previous years?
+
+**System Response:**  
+Not enough evidence in the retrieved context.
+
+**Observation:**  
+The system correctly identifies that the provided documents do not contain enrollment projections and explicitly refuses to answer, demonstrating effective hallucination avoidance.
+
+
+---
+
+## Ablation & Tradeoffs
+
+We qualitatively compare different retrieval strategies:
+
+- **Dense retrieval** captures semantic similarity but may miss structured tables.
+- **Sparse retrieval** reliably retrieves keyword-matching policy documents.
+- **Hybrid retrieval** improves coverage across text, tables, and OCR-derived content.
+
+Hybrid retrieval is selected for this sprint due to its **better evidence coverage**, despite slightly lower precision at top ranks.
+
+---
+
+## Failure & Risk Analysis
+
+### Observed Failure
+For shuttle-related questions, the system may infer plausible answers using campus maps alone, even when **shuttle route documentation is missing**.
+
+### Risk
+This can lead to **under-grounded answers** that appear correct but are not fully supported by evidence.
+
+### Mitigation
+- Enforce modality-aware gating (e.g., require shuttle schedule evidence for shuttle questions)
+- Trigger partial or full refusal when required modalities are missing
+- Surface evidence-pack transparency to users
+
+---
+
+## How to Run
+
+1. Open the provided Jupyter Notebook
+2. Install dependencies listed at the top of the notebook
+3. Place PDFs and images in the expected data directories
+4. Run all cells to reproduce ingestion, retrieval, and demo outputs
+
+---
 
 ## Evaluation
 
