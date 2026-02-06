@@ -67,7 +67,7 @@ The system follows a modular multimodal RAG pipeline:
 |----------|------------------|-------------|----------|-----------------|
 | Student Handbook | [UMKC Student Handbook](https://www.umkc.edu/student-affairs/docs/umkc-student-handbook.pdf) | umkc-student-handbook.pdf | PDF / text | Policies, student services, conduct → text evidence |
 | Parking Permits | [UMKC Parking Operations](https://www.umkc.edu/parking/parking-options/student-permits.html) | Student Permits - Parking Options - Parking _ University of Missouri-Kansas City.pdf | PDF / text | Parking rules, permits, zones → text + table evidence |
-| Campus Crime Report (Clery) | [UMKC Police – Campus Crime Information](https://www.umkc.edu/police/docs/2025ccfsr.pdf) | 2025ccfsrumkcpolice.pdf | PDF / table  Crime statistics, trends → numeric + figure evidence |
+| Campus Crime Report (Clery) | [UMKC Police – Campus Crime Information](https://www.umkc.edu/police/docs/2025ccfsr.pdf) | 2025ccfsrumkcpolice.pdf | PDF / table | Crime statistics, trends → numeric + figure evidence |
 | Visual Identity Guidelines | [UMKC Brand Guidelines](https://www.umkc.edu/mcom/docs/visual-identity-guidelines.pdf) | visual-identity-guidelines.pdf | PDF / image | Logo, color, design → optional for UI/branding |
 | Health Sciences Campus Map | [UMKC Maps](https://www.umkc.edu/documents/umkc-health-sciences-campus-map.pdf) | umkc-health-sciences-campus-map.pdf | PDF / image | Campus map → location-based tasks |
 | Volker Campus Map | [UMKC Maps](https://www.umkc.edu/documents/umkc-volker-campus-map.pdf) | umkc-volker-campus-map.pdf | PDF / image | Campus map → directions, shuttle stops |
