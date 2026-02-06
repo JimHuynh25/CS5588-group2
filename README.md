@@ -69,7 +69,7 @@ The system follows a modular multimodal RAG pipeline:
 | Parking Permits | [UMKC Parking Operations](https://parking.umkc.edu/) | Student Permits - Parking Options - Parking _ University of Missouri-Kansas City.pdf | PDF / text | Parking rules, permits, zones → text + table evidence |
 | Campus Crime Report (Clery) | [UMKC Police – Campus Crime Information](https://www.umkc.edu/police/campus-crime-information/) | 2025ccfsrumkcpolice.pdf | PDF / table  Crime statistics, trends → numeric + figure evidence |
 | Visual Identity Guidelines | [UMKC Brand Guidelines](https://www.umkc.edu/marketing/brand-guidelines/) | visual-identity-guidelines.pdf | PDF / image | Logo, color, design → optional for UI/branding |
-| Health Sciences Campus Map | [UMKC Maps](https://www.umkc.edu/maps/) | umkc-health-sciences-campus-map.pdf | PDF / image | Campus map → location-based tasks |
+| Health Sciences Campus Map | [UMKC Maps](https://www.umkc.edu/documents/umkc-health-sciences-campus-map.pdf) | umkc-health-sciences-campus-map.pdf | PDF / image | Campus map → location-based tasks |
 | Volker Campus Map | [UMKC Maps](https://www.umkc.edu/maps/) | umkc-volker-campus-map.pdf | PDF / image | Campus map → directions, shuttle stops |
 | Shuttle Schedule | [UMKC Shuttle / Transportation](https://www.umkc.edu/parking/shuttle/) | 2026-spring-shuttle-schedule.pdf | PDF / table | Shuttle routes & times → text + table evidence |
 | University Catalog | [UMKC Consumer Information (Catalog)](https://www.umkc.edu/registrar/forms-resources/student-resources/consumer-information.html) | 2025-2026 University Catalog_Archived 9-10-25.pdf | PDF / table / text | Program/course requirements → applicant questions |
