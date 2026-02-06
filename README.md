@@ -1,5 +1,11 @@
 # CS5588-group2
+## Team Roles (Required)
 
+| Team Member | Role | Responsibilities |
+|------------|------|------------------|
+| **Lyza Iamrache** | **Product Lead** | Defines the stakeholder persona(s), product value, success metrics (trust, usability, time-to-answer), and writes the “If we shipped this” deployment plan. |
+| **Ailing Nan** | **Systems Lead** | Builds the multimodal pipeline (PDF ingestion + OCR), implements retrieval (BM25 + FAISS + hybrid fusion + reranking), grounding with citations, and runs ablation studies. |
+| **Gia Huynh** | **Evaluation & Risk Lead** | Designs evaluation metrics (P@5, R@10, faithfulness), compares retrieval methods, documents failure cases, and writes governance + mitigation strategies. |
 
 ## Evaluation
 
